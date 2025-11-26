@@ -366,6 +366,11 @@ app.put('/users/profile', auth, async (req, res) => {
 
 
 // === Jalankan Server ===
-app.listen(PORT, () => {
-  console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server berjalan di http://localhost:${PORT}`);
+  });
+}
+
+// Export untuk Vercel
+module.exports = app;
